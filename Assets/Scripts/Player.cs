@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody rb;
+
     [SerializeField]
-    private float jumpForce = 5f;
+    private float forceMovement = 5f;
     private ActionPlayerInputs player;
 
     private void Awake()
@@ -18,7 +20,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+       // rb = GetComponent<Rigidbody>();
         player.Standard.Movement.performed += PlayerMovement;
 
     }
@@ -35,14 +37,16 @@ public class Player : MonoBehaviour
         switch (tecla)
         {
             case "w":
-               // transform.position * jumpForce;
-                break;
-            case "s":
-                //transform.position
+                transform.Translate(Vector3.forward * forceMovement);
                 break;
             case "a":
+                transform.Translate(Vector3.left * forceMovement);
+                break;
+            case "s":
+                transform.Translate(Vector3.back * forceMovement);
                 break;
             case "d":
+                transform.Translate(Vector3.right * forceMovement);
                 break;
         }
         Debug.Log(tecla);
