@@ -9,6 +9,13 @@ public class Mapa : MonoBehaviour
     private float forceMovement = 5f;
     private ActionPlayerInputs mapa;
 
+    [Header ("SpawnPisos")]
+    private int carril = 0;
+    public GameObject[] pisos;
+    [SerializeField]
+    private int pisosDiferencia;
+    public Transform parentObject;
+
     private void Awake()
     {
         mapa = new ActionPlayerInputs();
@@ -17,7 +24,11 @@ public class Mapa : MonoBehaviour
 
     void Start()
     {
-        // rb = GetComponent<Rigidbody>();
+        for (int i = 0; i < pisosDiferencia; i++)
+        {
+            CrearPiso();
+        }
+
         mapa.Standard.Movement.performed += MapMovement;
 
     }
@@ -35,6 +46,7 @@ public class Mapa : MonoBehaviour
         {
             case "w":
                 transform.Translate(Vector3.back * forceMovement);
+                CrearPiso();
                 break;
             case "s":
                 transform.Translate(Vector3.forward * forceMovement);
@@ -42,4 +54,12 @@ public class Mapa : MonoBehaviour
         }
         Debug.Log(tecla);
     }   
+
+    public void CrearPiso()
+    {
+        //Instantiate(pisos[Random.Range(0, pisos.Length)], Vector3.forward * carril, Quaternion.identity);
+        Vector3 spawnPosition = parentObject.position + Vector3.forward * carril;
+        Instantiate(pisos[Random.Range(0, pisos.Length)], spawnPosition, Quaternion.identity, parentObject); 
+        carril++;
+    }
 }
