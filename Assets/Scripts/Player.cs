@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class Player : MonoBehaviour
 {
+    public GameObject uiMuerte;
+
     [SerializeField]
     private float forceMovement = 5f;
     private ActionPlayerInputs player;
@@ -53,6 +56,7 @@ public class Player : MonoBehaviour
             Time.timeScale = 0f;
 
             player.Disable();
+            uiMuerte.SetActive(true);
         }
     }
 
