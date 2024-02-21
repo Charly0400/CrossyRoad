@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Carro : MonoBehaviour
 {
-    [SerializeField]
-    private float velocidad;
 
-    private void Start()
+    public int velocidad; // Velocidad del coche
+
+    /*public int velocidadpublica // Propiedad para obtener y asignar la velocidad del coche
     {
-        velocidad = Random.Range(3, 6);
-    }
+        get { return velocidad; }
+        set { velocidad = value; }
+    }*/
 
     private void Update()
     {
-        transform.Translate(Vector3.left * velocidad * Time.deltaTime);
+        transform.Translate(-velocidad * Time.deltaTime, 0, 0);
     }
 
 

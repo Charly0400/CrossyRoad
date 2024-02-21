@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DevVehícles : MonoBehaviour
 {
-    public Transform spawnVehicles;
-    public int timeSpawn = 0;
+    //public Transform spawnVehicles;
+    //public int timeSpawn = 0;
 
     private void Update()
     {
@@ -17,7 +17,7 @@ public class DevVehícles : MonoBehaviour
     {
         if (other.CompareTag("Carro"))
         {
-            other.transform.Translate(25,0,0);
+            other.transform.Translate(20,0,0);
         }
     }
 }

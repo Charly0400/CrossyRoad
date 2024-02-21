@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float forceMovement = 5f;
     private ActionPlayerInputs player;
+   
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
 
     private void PlayerMovement(InputAction.CallbackContext context)
     {
+
         string tecla = context.control.name;
         switch (tecla)
         {
@@ -42,4 +44,16 @@ public class Player : MonoBehaviour
         }
         Debug.Log(tecla);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Carro"))
+        {
+            // Detener el juego
+            Time.timeScale = 0f;
+
+            player.Disable();
+        }
+    }
+
 }
